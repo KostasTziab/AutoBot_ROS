@@ -1,0 +1,28 @@
+<launch>
+
+
+    <!-- node that calls laser_read  python file -->
+  <include file= "/home/ogias/catkin_ws/src/laser_readings/launch/laser_readings.launch" />
+
+    <!--node name="start_arduino" pkg ="autobot" type="start_arduino"/-->
+
+
+    <!-- parameter that calls the urdf file of the moving robot  -->
+    <param name="robot_description" command="cat $(find autobot)/urdf/autobot.urdf" /-->
+
+    <!-- node that calls the rosserial pkg with the port and the baud rate of serial connection  -->
+    <node name="serial_node" pkg ="rosserial_python" type="serial_node.py">
+      <param name="port" type="string" value="/dev/ttyACM0"/>
+      <param name="baud" type="int" value="115200"/>
+    </node>
+
+    <!-- node that calls rviz pkg -->
+    <!--node name="rviz" pkg="rviz" type="rviz"/-->
+
+    <!-- node that calls the teleop_twist_keyboard pkg for teleoperational handle of the robot -->
+    <!--node name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/-->
+
+    <!-- this includes the launch file of the Lidar  -->
+    <include file= "/home/ogias/catkin_ws/src/ydlidar_ros_driver/launch/X2.launch" />
+
+</launch>
