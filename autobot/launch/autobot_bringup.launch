@@ -8,7 +8,7 @@
 
 
     <!-- parameter that calls the urdf file of the moving robot  -->
-    <param name="robot_description" command="cat $(find autobot)/urdf/autobot.urdf" /-->
+    <param name="robot_description" command="cat $(find autobot)/urdf/autobot.urdf" />
 
     <!-- node that calls the rosserial pkg with the port and the baud rate of serial connection  -->
     <node name="serial_node" pkg ="rosserial_python" type="serial_node.py">
